@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial - Feria de Puebla 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&family=Parisienne&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #e94a76;
+            --primary-light: #ff6b9e;
+            --accent: #ffd700;
+            --text-dark: #333;
+            --text-light: #f8f8f8;
+            --shadow: rgba(0, 0, 0, 0.25);
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-dark);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .invitation-container {
+            position: relative;
+            z-index: 0;
+            width: 70%;
+            max-width: 500px;
+            margin: 20px 0;
+            perspective: 900px;
+        }
+        
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px var(--shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.7s ease;
+        }
+        
+        .envelope {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #ff6b9e, #e94a76);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: all 1.2s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+            transform-origin: top;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 15px 35px var(--shadow);
+            overflow: hidden;
+        }
+        
+        /* Sobre dibujado */
+        .envelope-icon {
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 8px solid rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        
+        .envelope-icon::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 142px solid transparent;
+            border-right: 142px solid transparent;
+            border-top: 100px solid rgba(255, 255, 255, 0.8);
+            top: -8px;
+            left: 0;
+            transform-origin: top;
+            transform: rotate(180deg);
+        }
+        
+        /* Eliminado el pseudo-elemento ::before que contenía el emoji del sobre */
+        
+        .envelope.open {
+            transform: translateY(-110%) rotateX(180deg);
+        }
+        
+        .envelope-content {
+            color: white;
+            font-family: 'Parisienne', cursive;
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 11;
+            animation: pulse 2s infinite;
+            position: relative;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .header {
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-family: 'Great Vibes', cursive;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-style: italic;
+        }
+        
+        .image-container {
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .content {
+            margin: 20px 0;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .date {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin: 20px 0;
+            padding: 10px 30px;
+            border: 2px dashed var(--primary);
+            display: inline-block;
+            border-radius: 30px;
+        }
+        
+        .footer {
+            margin-top: 25px;
+            font-style: italic;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            color: var(--primary);
+        }
+        
+        .signature {
+            font-family: 'Parisienne', cursive;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+        
+        .music-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .music-btn {
+            background: linear-gradient(145deg, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .music-status {
+            font-size: 0.8rem;
+            margin-top: 8px;
+            color: #777;
+            font-style: italic;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .invitation-card {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .envelope-content {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <div class="invitation-card">
+            <div class="envelope" id="envelope">
+                <div class="envelope-icon"></div>
+                <div class="envelope-content">
+                    <p>Toca aqui para</p>
+                    <p> abrir mi amor</p>
+                    <p>     ❤️</p>
+                </div>
+            </div>
+            
+            <div class="header animate__animated animate__fadeInDown">
+                <h1>Hola  mi  amor❤️</h1>
+                <div class="subtitle">La verdad ya me gustaron las invitaciones ...</div>
+            </div>
+            
+            <div class="image-container animate__animated animate__fadeIn">
+                <img src="feria-puebla.jpg" alt="Feria de Puebla" />
+            </div>
+            
+            <div class="content animate__animated animate__fadeIn">
+                <p>La mia bella <strong> Principessa</strong></p>
+                <p>Con todo la felicidad del mundo quiero invitarte a vivir juntos una experiencia nueva y unica.</p>
+                
+                <p>¿Me darías el privilegio de acompañarme a la <strong>Feria de Puebla 2025</strong>?</p>
+                <p>Juntos podremos disfrutar de música,juegos y rica comida. Ademas podemos crear recuerdos que durarán para siempre en nuestros corazones.</p>
+                
+                <div class="date animate__animated animate__pulse">
+                    1 de Mayo 2025
+                </div>
+                
+                <p>Se que aceptaras por eso no hay pregunta jaja. Solo quiero decirte que me haces muy feliz por que vayamos juntos.</p>
+            </div>
+            
+            <div class="music-controls">
+                <button id="pauseBtn" class="music-btn hidden">
+                    <span>⏸️</span> Pausar Música porque no me gusto
+                </button>
+                <button id="playBtn" class="music-btn">
+                    <span>▶️</span> Reproducir Música porque me arrepenti
+                </button>
+            </div>
+            <div class="music-status" id="musicStatus"></div>
+            
+            <div class="footer">
+                <p>Con todo mi amor</p>
+                <div class="signature"> Tu amorcito (No soy Marron 5)❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación de apertura del sobre
+            const envelope = document.getElementById('envelope');
+            envelope.addEventListener('click', function() {
+                console.log("Sobre clickeado");
+                this.classList.add('open');
+                
+                // Iniciar música automáticamente cuando se abre el sobre
+                if (!isPlaying) {
+                    startMusic();
+                }
+            });
+            
+            // Crear elemento de audio
+            const audioElement = new Audio();
+            audioElement.src = "SARÀ PERCHÉ TI AMO.mp3"; // Asegúrate de que el nombre coincida exactamente
+            audioElement.loop = true;
+            audioElement.volume = 0.7;
+            
+            let isPlaying = false;
+            
+            // Botones
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const musicStatus = document.getElementById('musicStatus');
+            
+            // Función para iniciar la música
+            function startMusic() {
+                // Reproduce la música
+                audioElement.play().then(() => {
+                    isPlaying = true;
+                    playBtn.classList.add('hidden');
+                    pauseBtn.classList.remove('hidden');
+                    musicStatus.textContent = "♫ Reproduciendo: Una hermosa cancion para ti ♫";
+                }).catch(err => {
+                    // Si hay error, mostrar mensaje
+                    musicStatus.textContent = "Haz clic en 'Reproducir Música' para iniciar";
+                    console.log("Error al reproducir música:", err);
+                });
+            }
+
+            // Función para pausar la música
+            function pauseMusic() {
+                audioElement.pause();
+                isPlaying = false;
+                pauseBtn.classList.add('hidden');
+                playBtn.classList.remove('hidden');
+                musicStatus.textContent = "Mi corazon se detuvo por el rechazo";
+            }
+
+            // Event listeners para los botones
+            playBtn.addEventListener('click', startMusic);
+            pauseBtn.addEventListener('click', pauseMusic);
+
+            // Manejar el error si el archivo de música no se puede cargar
+            audioElement.addEventListener('error', function() {
+                musicStatus.textContent = "No se pudo cargar el archivo de música";
+                console.error("Error al cargar el archivo de audio");
+            });
+
+            // Corrige el nombre del archivo de imagen si es necesario
+            const img = document.querySelector('.image-container img');
+            img.onerror = function() {
+                // Si la imagen no carga con .jpg, intenta con .jpeg
+                if(this.src.endsWith('.jpg')) {
+                    this.src = 'feria-puebla.jpeg';
+                }
+                // Si aún falla, prueba con .JPG (mayúscula)
+                this.onerror = function() {
+                    if(this.src.endsWith('.jpeg')) {
+                        this.src = 'feria-puebla.JPG';
+                    }
+                };
+            };
+        });
+    </script>
+</body>
+</html>
